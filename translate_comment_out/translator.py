@@ -1,12 +1,8 @@
 from typing import List
-from translate_comment_out.config import get_environment
 from translate_comment_out.comment import is_comment_out, get_comment, translate_comment
 
 
 def translate(filepath: str, dest: str = 'ja') -> str:
-    if invalid_goolge_application_credentials():
-        raise Exception('Set environment \'GOOGLE_APPLICATION_CREDENTIALS\'')
-
     source_text: List[str] = []
     with open(file=filepath) as f:
         skip_idx: List[int] = []
@@ -22,7 +18,3 @@ def translate(filepath: str, dest: str = 'ja') -> str:
             else:
                 source_text.append(line)
     return "".join(source_text)
-
-
-def invalid_goolge_application_credentials():
-    return get_environment('GOOGLE_APPLICATION_CREDENTIALS') is None
