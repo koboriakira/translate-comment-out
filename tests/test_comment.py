@@ -2,14 +2,26 @@ from typing import List
 from translate_comment_out import comment
 
 
-def test_is_comment_out() -> bool:
+def test_is_comment_out():
     line = '     //  This is a comment.'
     assert comment.is_comment_out(line)
 
 
-def test_is_comment_out_false() -> bool:
+def test_is_comment_out_false():
     line = 'const test = "This is not a comment"'
     assert not comment.is_comment_out(line)
+
+
+def test_is_url_comment_out():
+    line = '    // https://github.com/webpack/webpack-dev-server/issues/887'
+    assert comment.is_url_comment_out(line)
+    line = '    // http://github.com/webpack/webpack-dev-server/issues/887'
+    assert comment.is_url_comment_out(line)
+
+
+def test_is_url_comment_out_false():
+    line = '    // websites from potentially accessing local content through DNS rebinding:'
+    assert not comment.is_url_comment_out(line)
 
 
 def test_get_comment():

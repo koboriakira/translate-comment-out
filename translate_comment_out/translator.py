@@ -1,5 +1,5 @@
 from typing import List
-from translate_comment_out.comment import is_comment_out, get_comment, translate_comment
+from translate_comment_out.comment import is_comment_out, is_url_comment_out, get_comment, translate_comment
 
 
 def translate(filepath: str, dest: str = 'ja') -> str:
@@ -10,7 +10,9 @@ def translate(filepath: str, dest: str = 'ja') -> str:
         for idx, line in enumerate(lines):
             if idx in skip_idx:
                 continue
-            if is_comment_out(line):
+            elif is_url_comment_out(line):
+                source_text.append(line)
+            elif is_comment_out(line):
                 comment, idx_list = get_comment(idx, lines)
                 skip_idx.extend(idx_list)
                 translated_comment = translate_comment(comment, dest)
