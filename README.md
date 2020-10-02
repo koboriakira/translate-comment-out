@@ -20,6 +20,6 @@ tco sample.js --dest ja > sample_ja.js
 from translate_comment_out import translator
 
 
-translated_source = translator.translate(filepath='sample.js')
+translated_source = translator.translate(filepath='sample.js', dest='ja)
 print(translated_source)
 ```
