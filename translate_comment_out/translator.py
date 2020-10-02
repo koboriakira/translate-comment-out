@@ -1,5 +1,5 @@
 from typing import List
-from translated_comment_out.config import get_environment
+from translate_comment_out.config import get_environment
 from translate_comment_out.comment import is_comment_out, get_comment, translate_comment
 
 
